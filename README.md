@@ -1,6 +1,6 @@
 # Express Facebook Auth
 
-Opinionated authentication middleware for Express that uses Facebook. By being opinionated, this module is relatively straightforward to use, as far as authentication is concerned. In all honestly, I mostly created this module because I was getting tired of copy-pasting the same code over and over :-P
+Opinionated Node.js authentication middleware for [express](http://expressjs.com/) that uses Facebook. By being opinionated, this module is relatively straightforward to use, as far as authentication is concerned. In all honestly, I mostly created this module because I was getting tired of copy-pasting the same code over and over :-P
 
 ## Installation
 
@@ -14,7 +14,6 @@ Let's start by creating a login page for our users called `login.pug`. This exam
 ```Pug
 doctype html
 body
-  div(id='fb-root')
   a(href='https://www.facebook.com/v2.10/dialog/oauth?client_id=' + facebookAppId + '&redirect_uri=' + redirectUri) Login with Facebook
 ```
 
