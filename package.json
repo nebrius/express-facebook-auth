@@ -1,0 +1,42 @@
+{
+  "name": "express-facebook-auth",
+  "version": "1.0.0",
+  "description": "A wrapper for express that simplifies some of the boilerplate for using Facebook for authentication",
+  "main": "dist/index.js",
+  "dependencies": {
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^9.6.0",
+    "@types/request": "^2.47.0",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "types": "./declarations/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "tslint 'src/**/*.ts'",
+    "build": "rimraf dist && rimraf declarations && tsc",
+    "postbuild": "echo done"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nebrius/express-facebook-auth.git"
+  },
+  "keywords": [
+    "express",
+    "facebook",
+    "authentication"
+  ],
+  "author": "Bryan Hughes <bryan@nebri.us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nebrius/express-facebook-auth/issues"
+  },
+  "homepage": "https://github.com/nebrius/express-facebook-auth#readme"
+}
