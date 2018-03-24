@@ -34,16 +34,16 @@ export interface IOptions {
   redirectUri: string;
 }
 
-const options = Symbol();
+const states = new WeakMap();
 
 export class Authenticator {
 
   constructor(opt: IOptions) {
-    (this as any)[options] = opt;
+    states.set(this, opt);
   }
 
   public createLoginSuccessEndpoint(app: express.Express): void {
-    const { facebookAppId, facebookAppSecret, loginUri, redirectUri } = (this as any)[options] as IOptions;
+    const { facebookAppId, facebookAppSecret, loginUri, redirectUri } = states.get(this) as IOptions;
     const redirectUriPath = parse(redirectUri).path;
     if (!redirectUriPath) {
       throw new Error(`Could not extract the path from the redirect URI ${redirectUri}`);
@@ -76,7 +76,7 @@ export class Authenticator {
   }
 
   public createMiddleware(redirect: boolean): express.RequestHandler {
-    const { facebookAppId, facebookAppSecret, loginUri, isUserRegistered } = (this as any)[options] as IOptions;
+    const { facebookAppId, facebookAppSecret, loginUri, isUserRegistered } = states.get(this) as IOptions;
     return (req, res, next) => {
 
       const handleUnauthorized = () => {

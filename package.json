@@ -1,6 +1,6 @@
 {
   "name": "express-facebook-auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A wrapper for express that simplifies some of the boilerplate for using Facebook for authentication",
   "main": "dist/index.js",
   "dependencies": {

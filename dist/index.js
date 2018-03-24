@@ -25,13 +25,13 @@ SOFTWARE.
 Object.defineProperty(exports, "__esModule", { value: true });
 const request = require("request");
 const url_1 = require("url");
-const options = Symbol();
+const states = new WeakMap();
 class Authenticator {
     constructor(opt) {
-        this[options] = opt;
+        states.set(this, opt);
     }
     createLoginSuccessEndpoint(app) {
-        const { facebookAppId, facebookAppSecret, loginUri, redirectUri } = this[options];
+        const { facebookAppId, facebookAppSecret, loginUri, redirectUri } = states.get(this);
         const redirectUriPath = url_1.parse(redirectUri).path;
         if (!redirectUriPath) {
             throw new Error(`Could not extract the path from the redirect URI ${redirectUri}`);
@@ -64,7 +64,7 @@ class Authenticator {
         });
     }
     createMiddleware(redirect) {
-        const { facebookAppId, facebookAppSecret, loginUri, isUserRegistered } = this[options];
+        const { facebookAppId, facebookAppSecret, loginUri, isUserRegistered } = states.get(this);
         return (req, res, next) => {
             const handleUnauthorized = () => {
                 if (redirect) {
